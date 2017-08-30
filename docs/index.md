@@ -27,3 +27,8 @@ This is the center for eZ Platform documentation for developers and system admin
 !!! tip "Not a developer?"
 
     Take a look at our [user documentation for editors and content managers](https://doc.ez.no/display/USER/Documentation).
+
+
+!!! enterprise "Enterprise box test"
+
+    Take a look at this Enterprise box test
