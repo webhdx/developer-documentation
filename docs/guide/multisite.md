@@ -2,15 +2,15 @@
 
 ## Introduction
 
-With eZ Platform it is possible to serve multiple, completely different sites using one eZ Platform instance and database.
+You can serve multiple, completely different sites using one eZ Platform instance and database.
 
 Each site will have its own content root, at a lower level than the default one (Location ID 2). One backoffice can be used for each site, but it is also possible to use a global one.
 
-This feature is a reimplementation of the [PathPrefix](http://doc.ez.no/eZ-Publish/Technical-manual/4.x/Reference/Configuration-files/site.ini/SiteAccessSettings/PathPrefix) one that existed in eZ Publish Legacy.
+This feature is a reimplementation of the [PathPrefix](http://doc.ez.no/eZ-Publish/Technical-manual/4.x/Reference/Configuration-files/site.ini/SiteAccessSettings/PathPrefix) that existed in eZ Publish Legacy.
 
-## Configuration
+## Configuring multisite
 
-The feature is configured in `ezplatform.yml`, either at siteaccess or siteaccess group level:
+The feature is configured in `ezplatform.yml`, either at SiteAccess or SiteAccess group level:
 
 ``` yaml
 ezpublish:
@@ -39,13 +39,30 @@ Use this parameter to exclude a list of URIs from the root jail defined using `l
 
     Leading slashes (`/`) are automatically trimmed internally by eZ Platform, so they can be ignored.
 
-## Usage
+### Setting the Index Page
 
-### Multisite Design
+The Index Page is the page shown when the root index / is accessed.
+You can configure the Index Page separately for each SiteAccess. Put the parameter `index_page` in your `ezplatform.yml` file, under the right SiteAccess category.
 
-eZ Platform does not apply a [Legacy template fallback](https://doc.ez.no/display/EZP/Legacy+template+fallback) like eZ Publish did. You can, however, have different designs in your multisite installation if you organize the view configuration with the use of siteaccesses.
+``` yaml
+# ezplatform.yml
 
-You can see how this is done on the example of a multisite that contains two blogs with different designs, but sharing some templates. Let's assume you have a siteaccess called `second_site`. You can organize your templates in the following folder structure:
+ezpublish:
+    system:
+        mygreat_site:
+            languages:
+                - eng-US
+            #The page to show when accessing IndexPage (/)
+            index_page: /yourURIPage
+```
+
+If not specified, the `index_page` is the configured content root.
+
+## Multisite design
+
+eZ Platform does not apply a [Legacy template fallback](https://doc.ez.no/display/EZP/Legacy+template+fallback) like eZ Publish did. You can, however, have different designs in your multisite installation if you organize the view configuration with the use of SiteAccesses.
+
+You can see how this is done on the example of a multisite that contains two blogs with different designs, but sharing some templates. Let's assume you have a SiteAccess called `second_site`. You can organize your templates in the following folder structure:
 
 ``` yaml
 views
@@ -86,25 +103,6 @@ ezpublish:
                             Identifier\ContentType: [blog_post]
 ```
 
-This config defines views that will be used for the `second_site` siteaccess: a separate `second_site/pagelayout.html.twig` and a template to be used for blog posts. When no view is defined under `second_site`, such as in the case of the `blog` Content Type, the template defined under `default` will apply. `default` will also be used for all siteaccesses other than `second_site`.
+This config defines views that will be used for the `second_site` SiteAccess: a separate `second_site/pagelayout.html.twig` and a template to be used for blog posts. When no view is defined under `second_site`, such as in the case of the `blog` Content Type, the template defined under `default` will apply. `default` will also be used for all SiteAccesses other than `second_site`.
 
 To load the base layout in templates you now need to use `{% extends noLayout == true ? viewbaseLayout : pagelayout %}`.
-
-### Setting the Index Page
-
-The Index Page is the page shown when the root index / is accessed.
-You can configure the Index Page separately for each siteaccess. Put the parameter `index_page` in your `ezplatform.yml` file, under the right siteaccess category.
-
-``` yaml
-# ezplatform.yml
-
-ezpublish:
-    system:
-        mygreat_site:
-            languages:
-                - eng-US
-            #The page to show when accessing IndexPage (/)
-            index_page: /yourURIPage
-```
-
-If not specified, the `index_page` is the configured content root.
