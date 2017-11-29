@@ -4,19 +4,20 @@
 
 ## Notable changes since v1.12.0
 
+### Copying subtrees in the back office
 
-EZP-27759: As an Editor, I want to copy the whole subtree of Content Objects
+Following [EZP-27759](https://jira.ez.no/browse/EZP-27759) you can now copy a Content item with all of its sub-items in the back office.
 
+The maximum number of Content items that can be copied this way can be set in configuration, see [Copy subtree limit](../guide/best_practices.md#copy-subtree-limit).
 
+### REST API improvements
 
-REST:
-- https://jira.ez.no/browse/EZP-28253 As a frontend developer I would like to get information about field type in the CurrentVersion object
-PAPI:
-- https://jira.ez.no/browse/EZP-28176 Improve index command with support for parallel & selective indexing
+- [EZP-27752](https://jira.ez.no/browse/EZP-27752) adds a REST endpoint for deleting a translation from all versions of a Content item.
+- [EZP-28253](https://jira.ez.no/browse/EZP-28253) adds a `typeIdentifier` field to the REST response for Version, which provides the Field Type.
 
+### ezplatform-http-cache extensibility
 
-EZEE-1780 As a developer, I want ezplatform-http-cache to be extensible
-
+[EZEE-1780](https://jira.ez.no/browse/EZEE-1780) makes ezplatform-http-cache extensible in third party bundles.
 
 ## Full list of new features, improvements and bug fixes since v1.12.0
 
@@ -24,7 +25,7 @@ EZEE-1780 As a developer, I want ezplatform-http-cache to be extensible
 |--------------|------------|
 | [List of changes for final of eZ Platform v1.13.0 on Github](https://github.com/ezsystems/ezplatform/releases/tag/v1.13.0) | [List of changes for final for eZ Platform Enterprise Edition v1.13.0 on Github](https://github.com/ezsystems/ezplatform-ee/releases/tag/v1.13.0) |
 | [List of changes for rc1 of eZ Platform v1.13.0 on Github](https://github.com/ezsystems/ezplatform/releases/tag/v1.13.0-rc1) | [List of changes for rc1 for eZ Platform Enterprise Edition v1.13.0 on Github](https://github.com/ezsystems/ezplatform-ee/releases/tag/v1.13.0-rc1) |
-| [List of changes for beta2 of eZ Platform v1.13.0 on Github](https://github.com/ezsystems/ezplatform/releases/tag/v1.13.0-beta2) | [List of changes for beta2 of eZ Platform Enterprise Edition v1.13.0 on Github](https://github.com/ezsystems/ezplatform-ee/releases/tag/v1.13.0-beta2) |
+| [List of changes for beta1 of eZ Platform v1.13.0 on Github](https://github.com/ezsystems/ezplatform/releases/tag/v1.13.0-beta1) | [List of changes for beta1 of eZ Platform Enterprise Edition v1.13.0 on Github](https://github.com/ezsystems/ezplatform-ee/releases/tag/v1.13.0-beta1) |
 
 ### Installation
 
